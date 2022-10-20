@@ -34,3 +34,10 @@ DB_PASSWORD=
 ```
 php artisan migrate
 ```
+
+
+```
+It was in my c:\xampp\php\php.ini
+;extension=gd
+This was commented out as you can see, removing ; and restarting apache server fixed my problem.
+```

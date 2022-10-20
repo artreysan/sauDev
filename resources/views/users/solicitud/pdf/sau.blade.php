@@ -1577,7 +1577,11 @@
                                         </li>
                                     </ul>
                                 @endif
-                                @if($solicitud->ip_fija=='si')  
+                                @if($solicitud->gitlab=='no' &&  
+                                    $solicitud->jira=='no' &&
+                                    $solicitud->glpi=='no'
+                                    )
+                                @else  
                                     <ul class="c29 ">
                                         <li class="c17 li-bullet-0">
                                             <span class="c0">
