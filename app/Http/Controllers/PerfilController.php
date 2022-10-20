@@ -19,8 +19,7 @@ class PerfilController extends Controller
     public function guardarPerfilActualizado(Request $request){
         
         if(User::where('email',$request->email)->exists()){
-            $msj = ['Correo Existestente'];
-            return view('users.perfil.modificar');
+            return redirect()->route('post.index');
         }
         User::where('id', auth()->user()->id)->update([
            'name'=>$request->name,
