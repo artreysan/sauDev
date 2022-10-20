@@ -1,0 +1,17 @@
+.circulo {
+     width: 5px;
+     height: 5px;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     background: #5cb85c;
+}
+
+#circulo{
+   height:100px;
+   width:100px;
+   background:#E76AFA;
+   -moz-border-radius:50px;
+   -webkit-border-radius:50px;
+   border-radius:50px;
+}

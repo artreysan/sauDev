@@ -1,0 +1,63 @@
+version: '3'
+
+networks:
+  laravel:
+
+# This location is for dependencies
+services:
+  nginx:
+    #DockerImage used
+    #https://hub.docker.com/_/nginx
+    image: nginx:stable-alpine     
+    #Name of conteiner anywara name is  
+    container_name: nginx 
+    # Define the port 8088 of our computer for 
+    # the port in the container
+    ports: 
+      - "8088:80"
+    volumes: #Create link symbolic 
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on: 
+    #Here is for dependences of nginx
+     - php
+     - mysql
+    networks: 
+      - laravel
+
+  mysql:
+    # https://hub.docker.com/_/mysql
+    image: mysql:5.7.39
+    container_name: mysql
+    #If the conteiner stop, restart mysql
+    restart: unless-stopped
+    # Search 
+    tty: true
+    # Modify .env in src
+    ports:
+      - "4306:3306"
+    volumes:
+      -./mysql:var/lib/mysql
+    environment:
+       MYSQL_DATABASE: homestead
+       MYSQL_USER: homestead
+       MYSQL_PASSWORD: secret 
+       MYSQL_ROOT_PASSWORD: secret 
+       MYSQL_TAGS: dev 
+       MYSQL_NAME: mysql 
+    networks: 
+      - laravel
+
+  php:
+    #change image by build
+    build:
+      # Define the direyctory where we have file Dockerfile
+      context: .
+      dockerfile: Dockerfile
+    container_name: php
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "9000:9000"
+    networks: 
+      - laravel
