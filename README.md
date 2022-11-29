@@ -8,6 +8,9 @@ composer i
 ```
 npm i
 ```
+```
+npm run build
+```
 
 Create database call sau:
 ```
@@ -19,6 +22,12 @@ CREATE DATABASE sauDev;
 ```
 ```
 exit;
+```
+```
+cp .env.example .env
+```
+```
+php artisan key:generate
 ```
 
 Modificar el archivo `.env`:
